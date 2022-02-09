@@ -37,28 +37,33 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (isGrounded)
         {
-            float x = Input.GetAxisRaw("Horizontal");
-            float y = Input.GetAxisRaw("Jump");
+            float run = Input.GetAxisRaw("Horizontal");
+            float jump = Input.GetAxisRaw("Jump");
+            float crouch = Input.GetAxisRaw("Crouch");
 
             //check if the player is moving
-            if (x != 0)
+            if (run != 0)
             {
-                x = Flip(x);
+                run = Flip(run);
 
                 //can use this to shift the animation
                 animator.SetInteger("AnimationState", 1); //Run State
             }
-            else if (x == 0 && y==0)
+            else if (run == 0 && jump==0)
             {
                 animator.SetInteger("AnimationState", 0); //Idle State
             }
 
-            if (y > 0)
+            if (jump > 0)
             {
                 animator.SetInteger("AnimationState", 2); //Jump State
             }
+            else if(crouch < 0)
+            {
+                animator.SetInteger("AnimationState", 3); //Crouch State
+            }
 
-            Vector2 move = new Vector2(x * horizontalForce, y * verticalForce);
+            Vector2 move = new Vector2(run * horizontalForce, jump * verticalForce);
             rigidbody2D.AddForce(move);
         }
     }
