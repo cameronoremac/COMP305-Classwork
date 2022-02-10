@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - DoorCamera
   layers:
   - Default
   - TransparentFX
@@ -12,7 +13,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Camera Confiner
   - 
   - 
   - 
@@ -40,4 +41,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1772127803
+    locked: 0
+  - name: Props
+    uniqueID: 3879425469
+    locked: 0
+  - name: Foreground
+    uniqueID: 286107845
+    locked: 0
+  - name: Player
+    uniqueID: 2718769923
+    locked: 0
+  - name: UI
+    uniqueID: 2158704667
     locked: 0

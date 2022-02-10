@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     [Header("Animation Properties")]
     public Animator animator;
+
+    [Header("Cameras")]
+    public CinemachineVirtualCamera playerCamera;
+    public CinemachineVirtualCamera doorCamera;
+
+    [Header("UI")]
+    public GameObject doorSign;
 
     // Start is called before the first frame update
     void Start()
@@ -84,5 +92,22 @@ public class PlayerBehaviour : MonoBehaviour
         Gizmos.color = Color.magenta;
         //Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
         //Gizmos.DrawLine(transform.position, groundCheck.position);
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("DoorCamera"))
+        {
+            playerCamera.Priority = 5;
+            doorCamera.Priority = 10;
+            doorSign.SetActive(true);
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        playerCamera.Priority = 10;
+        doorCamera.Priority = 5;
+        doorSign.SetActive(false);
     }
 }
